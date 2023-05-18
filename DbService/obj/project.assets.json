@@ -3515,11 +3515,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\bruno\\Desktop\\ShoppingCart\\DbService\\DbService.csproj",
+      "projectUniqueName": "C:\\Users\\bruno\\Desktop\\Sintaxis\\ShoppingCart\\DbService\\DbService.csproj",
       "projectName": "DbService",
-      "projectPath": "C:\\Users\\bruno\\Desktop\\ShoppingCart\\DbService\\DbService.csproj",
+      "projectPath": "C:\\Users\\bruno\\Desktop\\Sintaxis\\ShoppingCart\\DbService\\DbService.csproj",
       "packagesPath": "C:\\Users\\bruno\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\bruno\\Desktop\\ShoppingCart\\DbService\\obj\\",
+      "outputPath": "C:\\Users\\bruno\\Desktop\\Sintaxis\\ShoppingCart\\DbService\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\bruno\\AppData\\Roaming\\NuGet\\NuGet.Config",

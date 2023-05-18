@@ -82,12 +82,16 @@ namespace WebApplication1.Controllers
                     }
                     else
                     {
-                        _shoppingCartContext.Products.Add(new Product
+                        var product = _shoppingCartContext.Products.FirstOrDefault(x => x.Name == form["Name"].ToString());
+                        if (product == null)
                         {
-                            Name = form["Name"].ToString(),
-                            Description = form["Description"].ToString(),
-                            Price = Convert.ToDecimal(form["Price"].ToString().Replace(".",","))
-                        });
+                            _shoppingCartContext.Products.Add(new Product
+                            {
+                                Name = form["Name"].ToString(),
+                                Description = form["Description"].ToString(),
+                                Price = Convert.ToDecimal(form["Price"].ToString().Replace(".", ","))
+                            });
+                        }
                     }
                 }
                 _shoppingCartContext.SaveChanges();

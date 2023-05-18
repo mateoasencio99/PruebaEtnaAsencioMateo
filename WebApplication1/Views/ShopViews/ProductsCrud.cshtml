@@ -1,0 +1,115 @@
+﻿@{
+    ViewData["Title"] = "Productos";
+}
+@model IEnumerable<DbService.Product>
+<div class="containerCrudProducts">
+    <h2>Productos</h2>
+    <hr />
+    <div class="row">
+        <form method="post" action="/Home/Product">
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12" style="margin-top:10px">
+                <input required class="form-control" id="nameNewProduct" type="text" placeholder="Nombre" name="Name" maxlength="50"/>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12" style="margin-top:10px">
+                <input required class="form-control" id="priceNewProduct" type="number" placeholder="Precio" name="Price" step="0.01" />
+            </div>
+            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12" style="margin-top:10px">
+                <textarea required class="form-control" id="descriptionNewProduct" type="text" placeholder="Decripcion"
+                style="width:100%;height:100%; resize:none" name="Description" maxlength="1024"></textarea>
+            </div>
+            <div class="row">
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12" style="margin-top:10px">
+                    <button class="btn btn-success btn-sm" id="btnSaveProduct" type="submit" name="SaveNew">
+                        <i class="glyphicon glyphicon-plus"></i>Nuevo Producto</button>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12" style="margin-top:10px">
+                    <button disabled class="btn btn-secondary btn-sm" id="btnEditProduct" type="submit" name="Edit">
+                        <i class="glyphicon glyphicon-plus"></i>Guardar Edición</button>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12" style="margin-top:10px">
+                    <button disabled class="btn btn-danger btn-sm" id="btnDeleteProduct" type="submit" name="Delete">
+                        <i class="glyphicon glyphicon-plus"
+                           formnovalidate></i>Eliminar Producto
+                    </button>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12" style="margin-top:10px">
+                    <button class="btn btn-info btn-sm" id="btnClean" onclick="CleanForm()" type="button">
+                        <i class="glyphicon glyphicon-plus"></i>Limpiar Campos</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="row" style="margin-top: 20px">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <table class="table table-hover table-bordered" id="productTable" width="100%">
+                <thead>
+                    <tr>
+                        <th style="width: 20%">
+                            Nombre
+                        </th>
+                        <th style="width: 50%">
+                            Descripcion
+                        </th>
+                        <th style="width: 20%">
+                            Precio
+                        </th>
+                        <th style="width: 10%"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td style="width: 20%">
+                                @Html.Raw(item.Name)
+                            </td>
+                            <td style="width: 50%">
+                                @Html.Raw(item.Description)
+                            </td>
+                            <td style="width: 20%">
+                                @Html.Raw(item.Price.ToString("$#,##0.00"))
+                            </td>
+                            <td style="width: 10%">
+                                <a href="#" class="btn btn-secondary btn-sm" id="btnEdit"
+                                   onclick="EditProduct(
+                                   {Name: '@Html.DisplayFor(modelItem => item.Name)', 
+                                    Description: '@Html.DisplayFor(modelItem => item.Description)',
+                                    Price: '@Html.DisplayFor(modelItem => item.Price)',
+                                   })">Cargar Detalles</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript">
+    function EditProduct(datos) {
+        var _nameNewProduct = $('#nameNewProduct').val(datos.Name);
+        var _priceNewProduct = $('#priceNewProduct').val(datos.Price.replaceAll(",","."));
+        var _descriptionNewProduct = $('#descriptionNewProduct').val(datos.Description);
+
+        $('#btnSaveProduct').attr('disabled', 'disabled')
+        $('#btnEditProduct').removeAttr('disabled')
+        $('#btnDeleteProduct').removeAttr('disabled')
+        $('#nameNewProduct').attr('readonly', true)
+    };
+
+</script>
+<script type="text/javascript">
+    function CleanForm(){
+        $('#btnSaveProduct').removeAttr('disabled')
+        $('#btnEditProduct').attr('disabled', 'disabled')
+        $('#btnDeleteProduct').attr('disabled', 'disabled')
+        $('#nameNewProduct').removeAttr('readonly')
+        $('#nameNewProduct').val("");
+        $('#priceNewProduct').val("");
+        $('#descriptionNewProduct').val("");
+    };
+</script>
+<script type="text/javascript">
+    
+</script>

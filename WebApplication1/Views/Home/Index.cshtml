@@ -1,0 +1,133 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center" id="containerHome">
+    <h1 class="display-4">Shopping Cart</h1>
+    <div class="row" style="margin-top:20px">
+        <div class="col-lg-6" style="position: relative;display: inline-block;text-align: center;">
+            <img alt="error" src="images/product-drop.jpg" style="height: 100%; width:100%"/>
+            <h2 style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);background-color:black;color: white; padding:20px; border-radius:10px;">
+                <a href="@Url.Action("ProductsCrud","Home", new {})">Productos</a>
+            </h2>
+        </div>
+        <div class="col-lg-6" style="position: relative;display: inline-block;text-align: center;">
+            <img alt="error" src="images\Purchase-Order.png" style="height: 100%; width:100%" />
+            <h2 style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);background-color:black;color: white; padding:20px; border-radius:10px;">
+                <a href="@Url.Action("Purcharse","Home", new {})">Pedidos</a>
+            </h2>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var containerHome = new function () {
+        var self = this;
+        self.selector = {
+            contenedor: function (concat) {
+                var cnt = "#containerHome";
+                if (!concat) return cnt;
+                return cnt + " " + concat;
+            },
+            grilla: function () {
+                return self.selector.contenedor("#grillaControles");
+            },
+            campos: {
+
+            },
+            acciones: {
+                agregar: function () { return self.selector.contenedor("#agregarControl"); },
+                editar: function () { return self.selector.contenedor("#AbrirDetallesControles"); },
+                eliminar: function () { return self.selector.contenedor("#eliminarControl"); },
+                buscarGrilla: function () { return self.selector.contenedor("#buscarGrilla") },
+                preselectorDetalle: function () { return "tbody tr[role=row]"; },
+            },
+            trigger: {
+            }
+        };
+        self.muestraPantalla = function () {
+            common.datatables.ajustarColumnas(self.selector.grilla());
+        };
+
+        self.listener = {
+            //eliminar: function () {
+            //    var registroSeleccionado = common.datatables.obtenerDatosSeleccionados(self.selector.grilla());
+            //    if (registroSeleccionado.length === 0) {
+            //        return mensajes.erroneo("Advertencia", "Debe_Seleccionar_Un_Registro");
+            //    }
+            //    mostrarMensajeConfirmacion("Confirmar_Quitar_El_Registro_Seleccionado", function () {
+            //        common.datatables.eliminarRegistroSeleccionado(self.selector.grilla())
+            //    });
+            //},
+            //editarControlDatos: function () {
+            //    var datos = common.datatables.obtenerDatosSeleccionados(self.selector.grilla());
+            //    if (datos.length === 0) {
+            //        mensajes.erroneo("Validacion", "Debe_Seleccionar_Un_Registro");
+            //        return;
+            //    }
+            //    var ControlId = $(datos[0][0]).find("input[name=Id]").val().toString();
+
+            //    self.listener.editarControl(ControlId);
+            //},
+            //editarControlDatosDirecto: function () {
+            //    var ControlId = $(this).find("input[name=Id]").val().toString();
+
+            //    self.listener.editarControl(ControlId);
+            //},
+            //editarControl: function (ControlId) {
+            //    ajaxCustom.getCustom("@Url.Action("EditarControl", "AhorroEnergetico", new { string.Empty })", { ControlId: ControlId }, function (Control) {
+            //        $(self.selector.contenedor()).parent().trigger(self.selector.trigger.editarControl, [Control]);
+            //    });
+            //    $('#VM_Control').modal('show');
+            //},
+            //agregarControl: function () {
+            //    ajaxCustom.dataInContainer("#VM_Control", undefined);
+            //    $('#VM_Control').modal('show');
+            //},
+        };
+        self.init = function () {
+
+            var parametros = {
+                scrollY: "200px", scrollX: false, columnDefs: [
+                    { className: "center", targets: "_all" },
+                    { width: "20px", targets: [0] },
+                    { width: "50px", targets: [1] },
+                    { width: "115px", targets: [2] },
+                    { width: "450px", targets: [3] },
+                    { width: "80px", targets: [4] },
+                    { width: "80px", targets: [5] },
+                    { width: "40px", targets: [6] },
+                    { width: "90px", targets: [7] },
+                ],
+            };
+            common.datatables.minDataTable(self.selector.grilla(), parametros, { botonesCustom: true });
+            common.datatables.agregarSeleccionRegistro(self.selector.grilla());
+
+            var table = $(self.selector.grilla()).DataTable();
+            $(self.selector.acciones.buscarGrilla()).on('keyup', function () {
+                table.search(this.value).draw();
+            });
+
+
+            $(self.selector.acciones.agregar())
+                .off('click', self.listener.agregarControl)
+                .on('click', self.listener.agregarControl);
+
+            $(self.selector.acciones.eliminar())
+                .off('click', self.listener.eliminar)
+                .on('click', self.listener.eliminar);
+
+            $(self.selector.acciones.editar())
+                .off('click', self.listener.editarControlDatos)
+                .on('click', self.listener.editarControlDatos);
+
+            $(self.selector.contenedor()).parent()
+                .off(self.selector.trigger.muestraPantalla)
+                .on(self.selector.trigger.muestraPantalla, self.muestraPantalla);
+
+            $(self.selector.grilla()).off("dblclik", self.selector.acciones.preselectorDetalle()).on("dblclick", self.selector.acciones.preselectorDetalle(), self.listener.editarControlDatosDirecto);
+
+        };
+        self.init();
+    };
+</script>

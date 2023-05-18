@@ -1,6 +1,6 @@
 ﻿using DbService;
-using Jint.Native.Json;
 using Microsoft.AspNetCore.Mvc;
+using ShoppingCart.Models;
 using System.Diagnostics;
 using WebApplication1.Models;
 
@@ -25,12 +25,18 @@ namespace WebApplication1.Controllers
         public IActionResult ProductsCrud()
         {
             var products = _shoppingCartContext.Products.ToList();
-            return View("Views/ShopViews/ProductsCrud.cshtml", products);
+            ProductsCrudViewModel model = new ProductsCrudViewModel();
+            model.Products = products;
+            model.Alert = "";
+            return View("Views/ShopViews/ProductsCrud.cshtml", model);
         }
         public IActionResult Purcharse()
         {
+            PurcharseViewModel model = new PurcharseViewModel();
             var products = _shoppingCartContext.Products.ToList();
-            return View("Views/PurcharseViews/Purcharse.cshtml", products);
+            model.Products = products;
+            model.Alert = "";
+            return View("Views/PurcharseViews/Purcharse.cshtml", model);
         }
 
         public IActionResult Cart(IList<string> Name,IList<string> Quantity, IList<string> TotalProductPrice)
@@ -48,8 +54,21 @@ namespace WebApplication1.Controllers
                     });
                 }
             }
-                
-            return View("Views/PurcharseViews/FinalCart.cshtml", products);
+            if (products.Count() == 0)
+            {
+                PurcharseViewModel model = new PurcharseViewModel();
+                var returnProducts = _shoppingCartContext.Products.ToList();
+                model.Products = returnProducts;
+                model.TypeAlert = "error";
+                model.Alert = "Debe seleccionar al menos un producto para terminar el pedido";
+                return View("Views/PurcharseViews/Purcharse.cshtml", model);
+            }
+            else
+            {
+                FinalCartViewModel model = new FinalCartViewModel();
+                model.Products = products;
+                return View("Views/PurcharseViews/FinalCart.cshtml", model);
+            }
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
@@ -60,14 +79,25 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public ActionResult Product(IFormCollection form)
         {
+            string msg = "";
+            string typeAlert = "";
             try
             {
                 bool isDelete = form.ContainsKey("Delete");
                 if (isDelete)
                 {
                     var product = _shoppingCartContext.Products.FirstOrDefault(x => x.Name == form["Name"].ToString());
-                    if(product != null)
+                    if (product != null)
+                    {
                         _shoppingCartContext.Products.Remove(product);
+                        msg = "Se elimino el producto con exito";
+                        typeAlert = "ok";
+                    }
+                    else
+                    {
+                        msg = "El prducto que desea eliminar no existe";
+                        typeAlert = "error";
+                    }
                 }
                 else
                 { bool isEdit = form.ContainsKey("Edit");
@@ -78,6 +108,13 @@ namespace WebApplication1.Controllers
                         {
                             product.Description = form["Description"].ToString();
                             product.Price = Convert.ToDecimal(form["Price"].ToString().Replace(".", ","));
+                            msg = "Se edito el producto con exito";
+                            typeAlert = "ok";
+                        }
+                        else
+                        {
+                            msg = "El prducto que desea editar no existe";
+                            typeAlert = "error";
                         }
                     }
                     else
@@ -91,12 +128,23 @@ namespace WebApplication1.Controllers
                                 Description = form["Description"].ToString(),
                                 Price = Convert.ToDecimal(form["Price"].ToString().Replace(".", ","))
                             });
+                            msg = "Se agrego el producto con exito";
+                            typeAlert = "ok";
+                        }
+                        else
+                        {
+                            msg = "El prducto que desea agregar ya existe";
+                            typeAlert = "error";
                         }
                     }
                 }
                 _shoppingCartContext.SaveChanges();
                 var products = _shoppingCartContext.Products.ToList();
-                return View("Views/ShopViews/ProductsCrud.cshtml", products);
+                ProductsCrudViewModel model = new ProductsCrudViewModel();
+                model.Products = products;
+                model.Alert = msg;
+                model.TypeAlert = typeAlert;
+                return View("Views/ShopViews/ProductsCrud.cshtml", model);
             }
             catch(Exception e)
             {

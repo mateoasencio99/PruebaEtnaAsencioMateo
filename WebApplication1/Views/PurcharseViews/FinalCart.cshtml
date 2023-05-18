@@ -3,7 +3,7 @@
     decimal finalTotal = 0;
     string finalTotalMoneyFomat = "";
 }
-@model IEnumerable<FinalCartGridViewModel>
+@model ShoppingCart.Models.FinalCartViewModel;
 <div class="containerFinalCart">
     <h2>Resumen Final de Mi Pedido</h2>
     <hr />
@@ -27,7 +27,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var item in Model)
+                    @foreach (var item in Model.Products)
                     {
                         <tr>
                             <td style="width: 25%">

@@ -88,3 +88,4 @@ C:\Users\bruno\Desktop\ShoppingCart\WebApplication1\obj\Debug\net6.0\refint\Shop
 C:\Users\bruno\Desktop\ShoppingCart\WebApplication1\obj\Debug\net6.0\ShoppingCart.pdb
 C:\Users\bruno\Desktop\ShoppingCart\WebApplication1\obj\Debug\net6.0\ShoppingCart.genruntimeconfig.cache
 C:\Users\bruno\Desktop\ShoppingCart\WebApplication1\obj\Debug\net6.0\ref\ShoppingCart.dll
+C:\Users\bruno\Desktop\ShoppingCart\WebApplication1\bin\Debug\net6.0\CurrieTechnologies.Razor.SweetAlert2.dll

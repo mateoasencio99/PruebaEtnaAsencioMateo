@@ -1,7 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Productos";
 }
-@model IEnumerable<DbService.Product>
+@model ShoppingCart.Models.ProductsCrudViewModel;
 
 <div class="containerCrudProducts">
     <h2>Productos</h2>
@@ -59,7 +59,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var item in Model)
+                    @foreach (var item in Model.Products)
                     {
                         <tr>
                             <td style="width: 20%">
@@ -87,6 +87,45 @@
     </div>
 </div>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="sweetalert2.all.min.js"></script>
+<script type="text/javascript">
+    if ('@Html.Raw(Model.Alert)' != "") {
+        if ('@Html.Raw(Model.TypeAlert)' == "ok") {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 6000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+            Toast.fire({
+                icon: 'success',
+                title: '@Html.Raw(Model.Alert)'
+            })
+        }else{
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 6000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+            Toast.fire({
+                icon: 'error',
+                title: '@Html.Raw(Model.Alert)'
+            })
+        }
+    }
+</script>
 <script type="text/javascript">
     function EditProduct(datos) {
         var _nameNewProduct = $('#nameNewProduct').val(datos.Name);

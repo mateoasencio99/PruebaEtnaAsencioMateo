@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "09jVEZ1uz8nQPc5oLfZFIvauG4GlegREg+FAm0Uywuo+9dNdGavuFQZikdV7XqZcFuR0kOBiXOIVUXqM6ovfUg==",
+  "dgSpecHash": "UVPJNF7TePR1v284Hzz0ETsw+83VQpCu4DC6asSswQ7gp7oEspMfLtAiIrVj0AD84Y1DKE0NTRO17NA9rzNIQw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\bruno\\Desktop\\Sintaxis\\ShoppingCart\\WebApplication1\\ShoppingCart.csproj",
+  "projectFilePath": "C:\\Users\\bruno\\Desktop\\proyectos\\PruebaEtna\\PruebaEtnaAsencioMateo\\WebApplication1\\ShoppingCart.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\bruno\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\bruno\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",

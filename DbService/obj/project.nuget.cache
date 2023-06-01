@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ez12nJbB6fXlFzKh9ks0XfAr3hqZa7rUvIBrIahhYQ/QFGy1f+72Lh9g1TgOLrOZOlkEPI8fpZfUi4Nd/MH8+g==",
+  "dgSpecHash": "TWKYMG9D/HxThj40zmCILHHiWP//iQQpo127koPEazVf58JGYiF6cuzAOjjJ/aX0KfjwC+j+HNMOieOdbEM7mg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\bruno\\Desktop\\Sintaxis\\ShoppingCart\\DbService\\DbService.csproj",
+  "projectFilePath": "C:\\Users\\bruno\\Desktop\\proyectos\\PruebaEtna\\PruebaEtnaAsencioMateo\\DbService\\DbService.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\bruno\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\bruno\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",

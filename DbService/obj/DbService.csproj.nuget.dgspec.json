@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\bruno\\Desktop\\Sintaxis\\ShoppingCart\\DbService\\DbService.csproj": {}
+    "C:\\Users\\bruno\\Desktop\\proyectos\\PruebaEtna\\PruebaEtnaAsencioMateo\\DbService\\DbService.csproj": {}
   },
   "projects": {
-    "C:\\Users\\bruno\\Desktop\\Sintaxis\\ShoppingCart\\DbService\\DbService.csproj": {
+    "C:\\Users\\bruno\\Desktop\\proyectos\\PruebaEtna\\PruebaEtnaAsencioMateo\\DbService\\DbService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\bruno\\Desktop\\Sintaxis\\ShoppingCart\\DbService\\DbService.csproj",
+        "projectUniqueName": "C:\\Users\\bruno\\Desktop\\proyectos\\PruebaEtna\\PruebaEtnaAsencioMateo\\DbService\\DbService.csproj",
         "projectName": "DbService",
-        "projectPath": "C:\\Users\\bruno\\Desktop\\Sintaxis\\ShoppingCart\\DbService\\DbService.csproj",
+        "projectPath": "C:\\Users\\bruno\\Desktop\\proyectos\\PruebaEtna\\PruebaEtnaAsencioMateo\\DbService\\DbService.csproj",
         "packagesPath": "C:\\Users\\bruno\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\bruno\\Desktop\\Sintaxis\\ShoppingCart\\DbService\\obj\\",
+        "outputPath": "C:\\Users\\bruno\\Desktop\\proyectos\\PruebaEtna\\PruebaEtnaAsencioMateo\\DbService\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\bruno\\AppData\\Roaming\\NuGet\\NuGet.Config",

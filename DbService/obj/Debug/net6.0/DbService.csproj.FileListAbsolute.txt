@@ -40,3 +40,17 @@ C:\Users\bruno\Desktop\Sintaxis\ShoppingCart\DbService\obj\Debug\net6.0\refint\D
 C:\Users\bruno\Desktop\Sintaxis\ShoppingCart\DbService\obj\Debug\net6.0\DbService.pdb
 C:\Users\bruno\Desktop\Sintaxis\ShoppingCart\DbService\obj\Debug\net6.0\DbService.genruntimeconfig.cache
 C:\Users\bruno\Desktop\Sintaxis\ShoppingCart\DbService\obj\Debug\net6.0\ref\DbService.dll
+C:\Users\bruno\Desktop\PruebaEtna\PruebaEtnaAsencioMateo\DbService\bin\Debug\net6.0\DbService.deps.json
+C:\Users\bruno\Desktop\PruebaEtna\PruebaEtnaAsencioMateo\DbService\bin\Debug\net6.0\DbService.runtimeconfig.json
+C:\Users\bruno\Desktop\PruebaEtna\PruebaEtnaAsencioMateo\DbService\bin\Debug\net6.0\DbService.dll
+C:\Users\bruno\Desktop\PruebaEtna\PruebaEtnaAsencioMateo\DbService\bin\Debug\net6.0\DbService.pdb
+C:\Users\bruno\Desktop\PruebaEtna\PruebaEtnaAsencioMateo\DbService\obj\Debug\net6.0\DbService.csproj.AssemblyReference.cache
+C:\Users\bruno\Desktop\PruebaEtna\PruebaEtnaAsencioMateo\DbService\obj\Debug\net6.0\DbService.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\bruno\Desktop\PruebaEtna\PruebaEtnaAsencioMateo\DbService\obj\Debug\net6.0\DbService.AssemblyInfoInputs.cache
+C:\Users\bruno\Desktop\PruebaEtna\PruebaEtnaAsencioMateo\DbService\obj\Debug\net6.0\DbService.AssemblyInfo.cs
+C:\Users\bruno\Desktop\PruebaEtna\PruebaEtnaAsencioMateo\DbService\obj\Debug\net6.0\DbService.csproj.CoreCompileInputs.cache
+C:\Users\bruno\Desktop\PruebaEtna\PruebaEtnaAsencioMateo\DbService\obj\Debug\net6.0\DbService.dll
+C:\Users\bruno\Desktop\PruebaEtna\PruebaEtnaAsencioMateo\DbService\obj\Debug\net6.0\refint\DbService.dll
+C:\Users\bruno\Desktop\PruebaEtna\PruebaEtnaAsencioMateo\DbService\obj\Debug\net6.0\DbService.pdb
+C:\Users\bruno\Desktop\PruebaEtna\PruebaEtnaAsencioMateo\DbService\obj\Debug\net6.0\DbService.genruntimeconfig.cache
+C:\Users\bruno\Desktop\PruebaEtna\PruebaEtnaAsencioMateo\DbService\obj\Debug\net6.0\ref\DbService.dll

@@ -9,11 +9,17 @@ namespace DbService
         {
 
         }
-        public DbSet<Product> Products { get; set;}
+        public DbSet<Product> Product { get; set;}
+        public DbSet<Purchase> Purchase { get; set;}
+        public DbSet<PurchaseDetail> PurchaseDetail { get; set;}
+        public DbSet<Category> Category { get; set;}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Product>().ToTable("Product");
+            modelBuilder.Entity<Purchase>().ToTable("Purchase");
+            modelBuilder.Entity<PurchaseDetail>().ToTable("PurchaseDetail");
+            modelBuilder.Entity<Category>().ToTable("Category");
         }
     }
 }

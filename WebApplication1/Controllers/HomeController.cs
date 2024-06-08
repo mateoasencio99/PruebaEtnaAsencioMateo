@@ -24,7 +24,7 @@ namespace WebApplication1.Controllers
 
         public IActionResult ProductsCrud()
         {
-            var products = _shoppingCartContext.Products.ToList();
+            var products = _shoppingCartContext.Product.ToList();
             ProductsCrudViewModel model = new ProductsCrudViewModel();
             model.Products = products;
             model.Alert = "";
@@ -33,7 +33,7 @@ namespace WebApplication1.Controllers
         public IActionResult Purcharse()
         {
             PurcharseViewModel model = new PurcharseViewModel();
-            var products = _shoppingCartContext.Products.ToList();
+            var products = _shoppingCartContext.Product.ToList();
             model.Products = products;
             model.Alert = "";
             return View("Views/PurcharseViews/Purcharse.cshtml", model);
@@ -57,7 +57,7 @@ namespace WebApplication1.Controllers
             if (products.Count() == 0)
             {
                 PurcharseViewModel model = new PurcharseViewModel();
-                var returnProducts = _shoppingCartContext.Products.ToList();
+                var returnProducts = _shoppingCartContext.Product.ToList();
                 model.Products = returnProducts;
                 model.TypeAlert = "error";
                 model.Alert = "Debe seleccionar al menos un producto para terminar el pedido";
@@ -86,16 +86,16 @@ namespace WebApplication1.Controllers
                 bool isDelete = form.ContainsKey("Delete");
                 if (isDelete)
                 {
-                    var product = _shoppingCartContext.Products.FirstOrDefault(x => x.Name == form["Name"].ToString());
+                    var product = _shoppingCartContext.Product.FirstOrDefault(x => x.Name == form["Name"].ToString());
                     if (product != null)
                     {
-                        _shoppingCartContext.Products.Remove(product);
+                        _shoppingCartContext.Product.Remove(product);
                         msg = "Se elimino el producto con exito";
                         typeAlert = "ok";
                     }
                     else
                     {
-                        msg = "El prducto que desea eliminar no existe";
+                        msg = "El producto que desea eliminar no existe";
                         typeAlert = "error";
                     }
                 }
@@ -103,7 +103,7 @@ namespace WebApplication1.Controllers
                 { bool isEdit = form.ContainsKey("Edit");
                     if (isEdit)
                     {
-                        var product = _shoppingCartContext.Products.FirstOrDefault(x => x.Name == form["Name"].ToString());
+                        var product = _shoppingCartContext.Product.FirstOrDefault(x => x.Name == form["Name"].ToString());
                         if (product != null)
                         {
                             product.Description = form["Description"].ToString();
@@ -119,10 +119,10 @@ namespace WebApplication1.Controllers
                     }
                     else
                     {
-                        var product = _shoppingCartContext.Products.FirstOrDefault(x => x.Name == form["Name"].ToString());
+                        var product = _shoppingCartContext.Product.FirstOrDefault(x => x.Name == form["Name"].ToString());
                         if (product == null)
                         {
-                            _shoppingCartContext.Products.Add(new Product
+                            _shoppingCartContext.Product.Add(new Product
                             {
                                 Name = form["Name"].ToString(),
                                 Description = form["Description"].ToString(),
@@ -139,7 +139,7 @@ namespace WebApplication1.Controllers
                     }
                 }
                 _shoppingCartContext.SaveChanges();
-                var products = _shoppingCartContext.Products.ToList();
+                var products = _shoppingCartContext.Product.ToList();
                 ProductsCrudViewModel model = new ProductsCrudViewModel();
                 model.Products = products;
                 model.Alert = msg;
@@ -148,7 +148,7 @@ namespace WebApplication1.Controllers
             }
             catch(Exception e)
             {
-                var products = _shoppingCartContext.Products.ToList();
+                var products = _shoppingCartContext.Product.ToList();
                 return View("Views/ShopViews/ProductsCrud.cshtml", products);
             }
         }

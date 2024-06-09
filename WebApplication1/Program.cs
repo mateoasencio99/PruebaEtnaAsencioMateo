@@ -32,6 +32,12 @@ app.UseRouting();
 
 app.UseAuthorization();
 
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<ShoppingCartContext>();
+    db.Database.Migrate();
+}
+
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");

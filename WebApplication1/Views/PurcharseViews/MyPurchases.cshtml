@@ -1,0 +1,64 @@
+﻿@{
+    ViewData["Title"] = "Mis Pedidos";
+}
+@model ShoppingCart.Models.MyPurchasesViewModel;
+
+<div class="containerCrudProducts">
+    <h2>Mis Pedidos</h2>
+    <hr />
+    <div class="row" style="margin-top: 20px">
+        <div class="col-md-12 text-right">
+            <a class="btn btn-primary" href="@Url.Action("Purcharse","Home", new {})">
+                Realizar nuevo pedido
+            </a>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top: 10px">
+            <table class="table table-hover table-bordered" id="productTable" width="100%">
+                <thead>
+                    <tr>
+                        <th style="width: 20%">
+                            Número
+                        </th>
+                        <th style="width: 40%">
+                            Fecha
+                        </th>
+                        <th style="width: 20%">
+                            Total
+                        </th>
+                        <th style="width: 10%">
+                            Observaciones
+                        </th>
+                        <th style="width: 10%"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Purchases)
+                    {
+                        <tr>
+                            <td style="width: 20%">
+                                @Html.Raw(item.Id)
+                            </td>
+                            <td style="width: 40%">
+                                @Html.Raw(item.Date.ToShortDateString())
+                            </td>
+                            <td style="width: 20%">
+                                @Html.Raw(item.Total.ToString("$#,##0.00"))
+                            </td>
+                            <td style="width: 10%">
+                                @Html.Raw(item.Observation)
+                            </td>
+                            <td style="width: 10%">
+                                <a class="btn btn-warning bt-sm" href="@Url.Action("ViewPurchase","Home", new { item.Id })">
+                                    Ver pedido
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="sweetalert2.all.min.js"></script>

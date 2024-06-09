@@ -5,53 +5,95 @@
 }
 @model ShoppingCart.Models.FinalCartViewModel;
 <div class="containerFinalCart">
-    <h2>Resumen Final de Mi Pedido</h2>
+    @if (Model.IsView)
+    {
+        <h2>Pedido N° @Model.Id</h2>
+    }
+    else
+    {
+        <h2>Resumen Final</h2>
+    }
     <hr />
-    <div class="row" style="margin-top: 20px">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <table class="table table-hover table-bordered" id="productTable" width="100%">
-                <thead>
-                    <tr>
-                        <th style="width: 25%">
-                            Nombre
-                        </th>
-                        <th style="width: 25%">
-                            Cantidad
-                        </th>
-                        <th style="width: 25%">
-                            Precio Unidad
-                        </th>
-                        <th style="width: 25%">
-                            Precio Total
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model.Products)
-                    {
+    <form method="post" action="/Home/NewPurchase">
+        <div class="row" style="margin-top: 20px">
+            @if (Model.IsView)
+            {
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    @Html.Label("Fecha")
+                    @Html.TextBoxFor(model => model.Date, new { @class = "form-control", @disabled = true })
+                </div>
+            }
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top: 10px">
+                @Html.Label("Observaciones")
+                @if(!Model.IsView)
+                {
+                    @Html.TextAreaFor(model => model.Observations, new { @style = "resize: none; width: 100%", @class = "form-control" })
+                }
+                else
+                {
+                    @Html.TextAreaFor(model => model.Observations, new { @style = "resize: none; width: 100%", @class = "form-control", @disabled = true })
+                }
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top: 10px">
+                <table class="table table-hover table-bordered" id="productTable" width="100%">
+                    <thead>
                         <tr>
-                            <td style="width: 25%">
-                                @Html.Raw(item.Name)
-                            </td>
-                            <td style="width: 25%">
-                                @Html.Raw(item.Quantity)
-                            </td>
-                            <td style="width: 25%">
-                                @Html.Raw(item.UnitPrice.ToString("$#,##0.00"))
-                            </td>
-                            <td style="width: 25%">
-                                @Html.Raw(item.TotalPrice.ToString("$#,##0.00"))
-                            </td>
+                            <th style="width: 25%">
+                                Nombre
+                            </th>
+                            <th style="width: 25%">
+                                Cantidad
+                            </th>
+                            <th style="width: 25%">
+                                Precio Unidad
+                            </th>
+                            <th style="width: 25%">
+                                Precio Total
+                            </th>
                         </tr>
-                        finalTotal = finalTotal + item.TotalPrice;
-                        finalTotalMoneyFomat = finalTotal.ToString("$#,##0.00");
-                    }
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @for(int i = 0; i < Model.Products.Count(); i++)
+                        {
+                            @Html.HiddenFor(model => model.Products[i].Name)
+                            @Html.HiddenFor(model => model.Products[i].Quantity)
+                            @Html.HiddenFor(model => model.Products[i].UnitPrice)
+                        }
+                        @foreach (var item in Model.Products)
+                        {
+                            <tr>
+                                <td style="width: 25%">
+                                    @Html.Raw(item.Name)
+                                </td>
+                                <td style="width: 25%">
+                                    @Html.Raw(item.Quantity)
+                                </td>
+                                <td style="width: 25%">
+                                    @Html.Raw(item.UnitPrice.ToString("$#,##0.00"))
+                                </td>
+                                <td style="width: 25%">
+                                    @Html.Raw(item.TotalPrice.ToString("$#,##0.00"))
+                                </td>
+                            </tr>
+                            finalTotal = finalTotal + item.TotalPrice;
+                            finalTotalMoneyFomat = finalTotal.ToString("$#,##0.00");
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pull-left">
+                <hr />
+                <h3>Total Compra <span id="totalCompra">@Html.Raw(finalTotalMoneyFomat).ToString()</span></h3>
+            </div>
+            @if(!Model.IsView)
+            {
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pull-left">
+                    <hr />
+                    <button class="btn btn-primary" type="submit">
+                        <i class="glyphicon glyphicon-plus"></i>Realizar pedido
+                    </button>
+                </div>
+            }
         </div>
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pull-left">
-            <hr />
-            <h3>Total Compra <span id="totalCompra">@Html.Raw(finalTotalMoneyFomat).ToString()</span></h3>
-        </div>
-    </div>
+    </form>
 </div>

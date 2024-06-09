@@ -5,16 +5,22 @@
 <div class="text-center" id="containerHome">
     <h1 class="display-4">Asencio - Carrito de Compras</h1>
     <div class="row" style="margin-top:20px">
-        <div class="col-lg-6" style="position: relative;display: inline-block;text-align: center;">
+        <div class="col-lg-4" style="position: relative;display: inline-block;text-align: center;">
+            <img alt="error" src="images/categoriesImage.jpg" style="height: 100%; width:100%" />
+            <h2 style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);background-color:black;color: white; padding:20px; border-radius:10px;">
+                <a href="@Url.Action("Index","Category", new {})">Categorías</a>
+            </h2>
+        </div>
+        <div class="col-lg-4" style="position: relative;display: inline-block;text-align: center;">
             <img alt="error" src="images/product-drop.jpg" style="height: 100%; width:100%"/>
             <h2 style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);background-color:black;color: white; padding:20px; border-radius:10px;">
                 <a href="@Url.Action("ProductsCrud","Home", new {})">Productos</a>
             </h2>
         </div>
-        <div class="col-lg-6" style="position: relative;display: inline-block;text-align: center;">
+        <div class="col-lg-4" style="position: relative;display: inline-block;text-align: center;">
             <img alt="error" src="images\Purchase-Order.png" style="height: 100%; width:100%" />
             <h2 style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);background-color:black;color: white; padding:20px; border-radius:10px;">
-                <a href="@Url.Action("Purcharse","Home", new {})">Pedidos</a>
+                <a href="@Url.Action("MyPurchases","Home", new {})">Pedidos</a>
             </h2>
         </div>
     </div>

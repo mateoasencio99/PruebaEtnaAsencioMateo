@@ -8,5 +8,7 @@
 
 
         public virtual List<PurchaseDetail> Details { get; set; }
+
+        public decimal Total => Details.Sum(d => d.Price * d.Quantity);
     }
 }
